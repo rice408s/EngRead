@@ -22,15 +22,18 @@ import type { ApiError } from "../../client/core/ApiError"
 import useCustomToast from "../../hooks/useCustomToast"
 import { emailPattern } from "../../utils"
 
+// 定义添加用户对话框的属性
 interface AddUserProps {
   isOpen: boolean
   onClose: () => void
 }
 
+// 定义添加用户表单的数据类型
 interface UserCreateForm extends UserCreate {
   confirm_password: string
 }
 
+// 添加用户对话框
 const AddUser = ({ isOpen, onClose }: AddUserProps) => {
   const queryClient = useQueryClient()
   const showToast = useCustomToast()
@@ -52,6 +55,7 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
       is_active: false,
     },
   })
+
 
   const mutation = useMutation({
     mutationFn: (data: UserCreate) =>
@@ -84,11 +88,11 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
       >
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader>Add User</ModalHeader>
+          <ModalHeader>添加用户</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isRequired isInvalid={!!errors.email}>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">邮箱</FormLabel>
               <Input
                 id="email"
                 {...register("email", {
@@ -103,7 +107,7 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
               )}
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.full_name}>
-              <FormLabel htmlFor="name">Full name</FormLabel>
+              <FormLabel htmlFor="name">用户名</FormLabel>
               <Input
                 id="name"
                 {...register("full_name")}
@@ -115,7 +119,7 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
               )}
             </FormControl>
             <FormControl mt={4} isRequired isInvalid={!!errors.password}>
-              <FormLabel htmlFor="password">Set Password</FormLabel>
+              <FormLabel htmlFor="password">密码</FormLabel>
               <Input
                 id="password"
                 {...register("password", {
@@ -137,7 +141,7 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
               isRequired
               isInvalid={!!errors.confirm_password}
             >
-              <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+              <FormLabel htmlFor="confirm_password">确认密码</FormLabel>
               <Input
                 id="confirm_password"
                 {...register("confirm_password", {
@@ -158,21 +162,21 @@ const AddUser = ({ isOpen, onClose }: AddUserProps) => {
             <Flex mt={4}>
               <FormControl>
                 <Checkbox {...register("is_superuser")} colorScheme="teal">
-                  Is superuser?
+                  超级管理员
                 </Checkbox>
               </FormControl>
               <FormControl>
                 <Checkbox {...register("is_active")} colorScheme="teal">
-                  Is active?
+                  启用
                 </Checkbox>
               </FormControl>
             </Flex>
           </ModalBody>
           <ModalFooter gap={3}>
             <Button variant="primary" type="submit" isLoading={isSubmitting}>
-              Save
+              保存
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>取消</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

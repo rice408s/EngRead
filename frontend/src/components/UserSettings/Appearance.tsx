@@ -15,19 +15,19 @@ const Appearance = () => {
     <>
       <Container maxW="full">
         <Heading size="sm" py={4}>
-          Appearance
+          外观
         </Heading>
         <RadioGroup onChange={toggleColorMode} value={colorMode}>
           <Stack>
             {/* TODO: Add system default option */}
             <Radio value="light" colorScheme="teal">
-              Light Mode
+              白天模式
               <Badge ml="1" colorScheme="teal">
-                Default
+                默认
               </Badge>
             </Radio>
             <Radio value="dark" colorScheme="teal">
-              Dark Mode
+              黑夜模式
             </Radio>
           </Stack>
         </RadioGroup>

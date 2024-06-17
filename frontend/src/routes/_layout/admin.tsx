@@ -47,7 +47,7 @@ const MembersTableBody = () => {
             )}
           </Td>
           <Td>{user.email}</Td>
-          <Td>{user.is_superuser ? "Superuser" : "User"}</Td>
+          <Td>{user.is_superuser ? "超级管理员" : "普通用户"}</Td>
           <Td>
             <Flex gap={2}>
               <Box
@@ -57,7 +57,7 @@ const MembersTableBody = () => {
                 bg={user.is_active ? "ui.success" : "ui.danger"}
                 alignSelf="center"
               />
-              {user.is_active ? "Active" : "Inactive"}
+              {user.is_active ? "启用" : "禁用"}
             </Flex>
           </Td>
           <Td>
@@ -91,18 +91,18 @@ function Admin() {
   return (
     <Container maxW="full">
       <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
-        User Management
+        用户管理
       </Heading>
       <Navbar type={"User"} />
       <TableContainer>
         <Table fontSize="md" size={{ base: "sm", md: "md" }}>
           <Thead>
             <Tr>
-              <Th width="20%">Full name</Th>
-              <Th width="50%">Email</Th>
-              <Th width="10%">Role</Th>
-              <Th width="10%">Status</Th>
-              <Th width="10%">Actions</Th>
+              <Th width="20%">用户名</Th>
+              <Th width="50%">邮箱</Th>
+              <Th width="10%">角色</Th>
+              <Th width="10%">状态</Th>
+              <Th width="10%">编辑</Th>
             </Tr>
           </Thead>
           <Suspense fallback={<MembersBodySkeleton />}>

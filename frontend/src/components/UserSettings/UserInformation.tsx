@@ -80,7 +80,7 @@ const UserInformation = () => {
     <>
       <Container maxW="full">
         <Heading size="sm" py={4}>
-          User Information
+          用户信息
         </Heading>
         <Box
           w={{ sm: "full", md: "50%" }}
@@ -89,7 +89,7 @@ const UserInformation = () => {
         >
           <FormControl>
             <FormLabel color={color} htmlFor="name">
-              Full name
+              用户名
             </FormLabel>
             {editMode ? (
               <Input
@@ -110,7 +110,7 @@ const UserInformation = () => {
           </FormControl>
           <FormControl mt={4} isInvalid={!!errors.email}>
             <FormLabel color={color} htmlFor="email">
-              Email
+              邮箱
             </FormLabel>
             {editMode ? (
               <Input
@@ -139,11 +139,11 @@ const UserInformation = () => {
               isLoading={editMode ? isSubmitting : false}
               isDisabled={editMode ? !isDirty || !getValues("email") : false}
             >
-              {editMode ? "Save" : "Edit"}
+              {editMode ? "保存" : "编辑"}
             </Button>
             {editMode && (
               <Button onClick={onCancel} isDisabled={isSubmitting}>
-                Cancel
+                取消
               </Button>
             )}
           </Flex>

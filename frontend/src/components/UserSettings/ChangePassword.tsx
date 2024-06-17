@@ -55,7 +55,7 @@ const ChangePassword = () => {
     <>
       <Container maxW="full">
         <Heading size="sm" py={4}>
-          Change Password
+        修改密码
         </Heading>
         <Box
           w={{ sm: "full", md: "50%" }}
@@ -64,7 +64,7 @@ const ChangePassword = () => {
         >
           <FormControl isRequired isInvalid={!!errors.current_password}>
             <FormLabel color={color} htmlFor="current_password">
-              Current Password
+              旧密码
             </FormLabel>
             <Input
               id="current_password"
@@ -79,7 +79,7 @@ const ChangePassword = () => {
             )}
           </FormControl>
           <FormControl mt={4} isRequired isInvalid={!!errors.new_password}>
-            <FormLabel htmlFor="password">Set Password</FormLabel>
+            <FormLabel htmlFor="password">新密码</FormLabel>
             <Input
               id="password"
               {...register("new_password", passwordRules())}
@@ -91,7 +91,7 @@ const ChangePassword = () => {
             )}
           </FormControl>
           <FormControl mt={4} isRequired isInvalid={!!errors.confirm_password}>
-            <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+            <FormLabel htmlFor="confirm_password">确认新密码</FormLabel>
             <Input
               id="confirm_password"
               {...register("confirm_password", confirmPasswordRules(getValues))}

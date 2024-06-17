@@ -68,7 +68,7 @@ const Sidebar = () => {
               </Box>
               {currentUser?.email && (
                 <Text color={textColor} noOfLines={2} fontSize="sm" p={2}>
-                  Logged in as: {currentUser.email}
+                  当前登录用户: {currentUser.email}
                 </Text>
               )}
             </Flex>
@@ -104,7 +104,7 @@ const Sidebar = () => {
               p={2}
               maxW="180px"
             >
-              Logged in as: {currentUser.email}
+              当前登录用户: {currentUser.email}
             </Text>
           )}
         </Flex>

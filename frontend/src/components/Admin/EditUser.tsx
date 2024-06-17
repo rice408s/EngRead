@@ -90,11 +90,11 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
       >
         <ModalOverlay />
         <ModalContent as="form" onSubmit={handleSubmit(onSubmit)}>
-          <ModalHeader>Edit User</ModalHeader>
+          <ModalHeader>编辑用户</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl isInvalid={!!errors.email}>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">邮箱</FormLabel>
               <Input
                 id="email"
                 {...register("email", {
@@ -109,11 +109,11 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
               )}
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel htmlFor="name">Full name</FormLabel>
+              <FormLabel htmlFor="name">用户名</FormLabel>
               <Input id="name" {...register("full_name")} type="text" />
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.password}>
-              <FormLabel htmlFor="password">Set Password</FormLabel>
+              <FormLabel htmlFor="password">密码</FormLabel>
               <Input
                 id="password"
                 {...register("password", {
@@ -130,7 +130,7 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
               )}
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.confirm_password}>
-              <FormLabel htmlFor="confirm_password">Confirm Password</FormLabel>
+              <FormLabel htmlFor="confirm_password">确认密码</FormLabel>
               <Input
                 id="confirm_password"
                 {...register("confirm_password", {
@@ -150,12 +150,12 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
             <Flex>
               <FormControl mt={4}>
                 <Checkbox {...register("is_superuser")} colorScheme="teal">
-                  Is superuser?
+                  超级管理员
                 </Checkbox>
               </FormControl>
               <FormControl mt={4}>
                 <Checkbox {...register("is_active")} colorScheme="teal">
-                  Is active?
+                  启用
                 </Checkbox>
               </FormControl>
             </Flex>
@@ -168,9 +168,9 @@ const EditUser = ({ user, isOpen, onClose }: EditUserProps) => {
               isLoading={isSubmitting}
               isDisabled={!isDirty}
             >
-              Save
+              保存
             </Button>
-            <Button onClick={onCancel}>Cancel</Button>
+            <Button onClick={onCancel}>取消</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

@@ -97,7 +97,7 @@ function Items() {
   return (
     <Container maxW="full">
       <Heading size="lg" textAlign={{ base: "center", md: "left" }} pt={12}>
-        Items Management
+       元素管理  
       </Heading>
 
       <Navbar type={"Item"} />
