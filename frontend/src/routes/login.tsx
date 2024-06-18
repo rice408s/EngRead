@@ -17,6 +17,7 @@ import {
   Link as RouterLink,
   createFileRoute,
   redirect,
+  useNavigate, // 导入 useNavigate
 } from "@tanstack/react-router"
 import { type SubmitHandler, useForm } from "react-hook-form"
 
@@ -30,7 +31,7 @@ export const Route = createFileRoute("/login")({
   beforeLoad: async () => {
     if (isLoggedIn()) {
       throw redirect({
-        to: "/",
+        to: "/hello",
       })
     }
   },
@@ -39,6 +40,7 @@ export const Route = createFileRoute("/login")({
 function Login() {
   const [show, setShow] = useBoolean()
   const { loginMutation, error, resetError } = useAuth()
+  const navigate = useNavigate() // 使用 useNavigate 钩子
   const {
     register,
     handleSubmit,
@@ -59,6 +61,7 @@ function Login() {
 
     try {
       await loginMutation.mutateAsync(data)
+      navigate({ to: '/hello' })
     } catch {
       // error is handled by useAuth hook
     }

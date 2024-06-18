@@ -1,10 +1,16 @@
 import {
     Button,
     Container,
-    Flex, // 导入Flex组件
+    Flex,
     Heading,
     VStack,
-    Text
+    Text,
+    Grid,
+    GridItem,
+    Box,
+    LinkBox,
+    LinkOverlay,
+    Input,
 } from "@chakra-ui/react"
 import {
     Link as RouterLink,
@@ -13,7 +19,10 @@ import {
 } from "@tanstack/react-router"
 
 import useAuth, { isLoggedIn } from "../hooks/useAuth"
-
+import BooksGrid from "../components/Book/BooksGrid"
+import { BooksData } from "../components/Book/BookData"
+import TopBar from "../components/Common/TopBar"
+import SearchBox from "../components/Common/SearchBox"
 export const Route = createFileRoute("/hello")({
     component: Hello,
     beforeLoad: async () => {
@@ -23,26 +32,40 @@ export const Route = createFileRoute("/hello")({
         //         to: "/",
         //     })
         // }
+
+
     },
 })
 
 function Hello() {
-    // 使用Flex组件使内容竖直居中
+    // 假设这是你的书籍数据
+    const books = BooksData()
+
+    const handleSearch = (value: string) => {
+        console.log(value)
+    }
+
     return (
-        <Flex direction="column" align="center" justify="center" height="100vh">
-            <Container centerContent maxW="xl">
-                <VStack spacing={4} align="stretch">
+        <Flex direction="column" align="center" justify="flex-start" height="100vh">
+            <TopBar />
+            <Container centerContent maxW="full" justifyContent={"center"}>
+                <VStack spacing={20} align="stretch" width="40%">
                     <Heading as="h1" size="2xl" textAlign="center">
-                        欢迎来到我们的网站！
+                        英阅EngRead
                     </Heading>
                     <Text fontSize="lg" textAlign="center">
-                        这是一个示例页面，展示如何使用 Chakra UI 和 React Router 创建一个简单的欢迎页面。
+                        轻松有趣地学习英语？
                     </Text>
-                    <Button colorScheme="blue" as={RouterLink} to="/login">
-                        开始使用
-                    </Button>
-                    <Button variant="outline" as={RouterLink} to="/about">
-                        了解更多
+
+
+                        <SearchBox onSearch={handleSearch} />
+
+
+                    {/* 书籍网格 */}
+                    <BooksGrid books={books} />
+                    {/* 查看全部书籍按钮 */}
+                    <Button colorScheme="teal" as={RouterLink} to="/books">
+                        查看全部书籍
                     </Button>
                 </VStack>
             </Container>
