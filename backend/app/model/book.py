@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 from sqlmodel import Field, Relationship, SQLModel
-from sqlalchemy import Text
 
 
 class BookBase(SQLModel):
@@ -11,7 +10,36 @@ class BookBase(SQLModel):
     isbn: str
     description: Optional[str] = None
     coverImage: str
-    
+
+# 
 class Book(BookBase, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    content: str = Field(sa_column_kwargs={"type_": Text()})
+    content: str = Field()
+# 创建书籍 
+class BookCreate(BookBase):
+    content: str
+
+# 更新书籍
+class BookUpdate(BookBase):
+    title: str | None = None
+    author: str | None = None
+    publishDate: str | None = None
+    isbn: str | None = None
+    description: str | None = None
+    coverImage: str | None = None
+    content: str | None = None
+    
+# 返回书籍
+class BookPublic(BookBase):
+    id: int
+    content: str
+
+# 返回书籍列表
+class BooksPublic(BaseModel):
+    data: list[BookPublic]
+    count: int
+
+
+
+
+

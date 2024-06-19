@@ -7,12 +7,19 @@ from app.models import Item, ItemCreate, User, UserCreate, UserUpdate
 
 
 def create_user(*, session: Session, user_create: UserCreate) -> User:
+    # 使用给定的会话和用户创建请求来创建一个新用户
+    # 首先，使用用户创建请求数据验证并创建一个新的User模型实例
+    # 其中，用户的密码会被哈希处理后存储
     db_obj = User.model_validate(
         user_create, update={"hashed_password": get_password_hash(user_create.password)}
     )
+    # 将新创建的用户实例添加到数据库会话中
     session.add(db_obj)
+    # 提交会话，以保存新用户到数据库
     session.commit()
+    # 刷新会话中的用户实例，以获取可能由数据库自动填充的任何字段
     session.refresh(db_obj)
+    # 返回新创建的用户实例
     return db_obj
 
 
